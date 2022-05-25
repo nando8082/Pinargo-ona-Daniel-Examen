@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>Formulario Producto</title>
+    </h:head>
+    <h:body>
+
+        <h:panelGrid border="1">
+            <f:facet name="header">
+                <h:outputText value="Formulario Producto"/>
+            </f:facet>
+            <h:link outcome="productoCRUD.xhtml" value="volver"/>
+            <h:form>
+                <h:panelGrid columns="2">
+
+
+                    <h:outputLabel value="nombre" for="nombre"/>
+                    <h:inputText id="nombre" value="#{productoBeans.producto.nombre}"/>
+
+                    <h:outputLabel value="descripcion" for="descripcion"/>
+                    <h:inputText id="descripcion" value="#{productoBeans.producto.descripcion}"/>
+
+                    <h:outputLabel value="marca" for="marca"/>
+                    <h:inputText id="marca" value="#{productoBeans.producto.marca}"/>
+                    <h:outputLabel value="stock" for="stock"/>
+
+                    <h:inputText id="stock" value="#{productoBeans.producto.stock}"/>
+
+
+                    <h:outputLabel value="estado" for="estado"/>
+                    <h:inputText id="estado" value="#{productoBeans.producto.estado}"/>
+
+                    <h:outputLabel value="precio" for="precio"/>
+                    <h:inputText id="precio" value="#{productoBeans.producto.precio}"/>
+
+                    <h:outputLabel value="sucursal" for="sucursal"/>
+                    <h:selectOneMenu id="sucursal" value="#{productoBeans.producto.sucursal}">
+                        <f:selectItem itemLabel="--- Seleccione una Categoria ---" itemValue="#{null}"/>
+                        <f:selectItems value="#{listadoSucursales}" var="su" itemLabel="#{su.correo}"/>
+                        <f:converter binding="#{sucursalConverter}"/>
+                    </h:selectOneMenu>
+
+
+                    <h:commandButton value="Guardar" action="#{productoBeans.guardar}"/>
+                    <h:inputHidden value="#{productoBeans.producto.id}"/>
+                </h:panelGrid>
+            </h:form>
+
+        </h:panelGrid>
+    </h:body>
+</html>
