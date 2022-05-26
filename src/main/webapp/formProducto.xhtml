@@ -1,55 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
     <h:head>
         <meta charset="UTF-8"/>
         <title>Formulario Producto</title>
+
+        <style type="text/css">
+            body{
+                background-image:url(recursos/fClientes.jpeg);
+                background-repeat: no-repeat;
+                background-position: 100% ;
+                height: 400px;
+                padding-right: 15%;
+                background-size: cover;
+            }
+
+            h3{
+                font-size: 35pt;
+                text-align: center;
+            }
+
+            .card{
+                margin-left: 38%;
+            }
+            
+        </style>
+
     </h:head>
     <h:body>
 
-        <h:panelGrid border="1">
-            <f:facet name="header">
-                <h:outputText value="Formulario Producto"/>
-            </f:facet>
-            <h:link outcome="productoCRUD.xhtml" value="volver"/>
+        <!-- Menú -->
+        <div class="card1">
             <h:form>
-                <h:panelGrid columns="2">
+                <p:growl id="messages"/>
 
+                <p:menubar>
+                    <p:submenu label="Archivo" icon="pi pi-fw pi-file">
+                        <p:submenu label="New" icon="pi pi-fw pi-plus">
+                            <p:menuitem value="Bookmark" icon="pi pi-fw pi-bookmark"/>
+                            <p:menuitem value="Video" icon="pi pi-fw pi-video"/>
+                        </p:submenu>
+                        <p:menuitem value="Delete" icon="pi pi-fw pi-trash"/>
+                        <p:divider />
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                    </p:submenu>
 
-                    <h:outputLabel value="nombre" for="nombre"/>
-                    <h:inputText id="nombre" value="#{productoBeans.producto.nombre}"/>
+                    <p:submenu label="Servicios" icon="pi pi-fw pi-pencil">
+                        <p:menuitem value="Cliente" icon="pi pi-fw pi-align-left"/>
+                        <p:menuitem value="Productos" icon="pi pi-fw pi-align-right"/>
+                        <p:menuitem value="Sucursales" icon="pi pi-fw pi-align-center"/>
+                        <p:menuitem value="Usuarios" icon="pi pi-fw pi-align-justify"/>
+                    </p:submenu>
 
-                    <h:outputLabel value="descripcion" for="descripcion"/>
-                    <h:inputText id="descripcion" value="#{productoBeans.producto.descripcion}"/>
+                    <p:submenu label="Usuario" icon="pi pi-fw pi-user">
+                        <p:menuitem value="Agregar" icon="pi pi-fw pi-user-plus"/>
+                    </p:submenu>
 
-                    <h:outputLabel value="marca" for="marca"/>
-                    <h:inputText id="marca" value="#{productoBeans.producto.marca}"/>
-                    <h:outputLabel value="stock" for="stock"/>
+                    <p:divider layout="vertical"/>
 
-                    <h:inputText id="stock" value="#{productoBeans.producto.stock}"/>
+                    <p:menuitem value="Salir" icon="pi pi-fw pi-power-off"/>
 
-
-                    <h:outputLabel value="estado" for="estado"/>
-                    <h:inputText id="estado" value="#{productoBeans.producto.estado}"/>
-
-                    <h:outputLabel value="precio" for="precio"/>
-                    <h:inputText id="precio" value="#{productoBeans.producto.precio}"/>
-
-                    <h:outputLabel value="sucursal" for="sucursal"/>
-                    <h:selectOneMenu id="sucursal" value="#{productoBeans.producto.sucursal}">
-                        <f:selectItem itemLabel="--- Seleccione una Categoria ---" itemValue="#{null}"/>
-                        <f:selectItems value="#{listadoSucursales}" var="su" itemLabel="#{su.correo}"/>
-                        <f:converter binding="#{sucursalConverter}"/>
-                    </h:selectOneMenu>
-
-
-                    <h:commandButton value="Guardar" action="#{productoBeans.guardar}"/>
-                    <h:inputHidden value="#{productoBeans.producto.id}"/>
-                </h:panelGrid>
+                    <f:facet name="options">
+                        <p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+                    </f:facet>
+                </p:menubar>
             </h:form>
+        </div>
 
-        </h:panelGrid>
+        <br></br><br></br>
+        
+        <h3>Formulario Producto</h3>
+
+        <div class="card">
+            <h:panelGrid border="1">
+                <h:link outcome="productoCRUD.xhtml" value="volver"/>
+                <h:form>
+                    <h:panelGrid columns="2">
+
+
+                        <h:outputLabel value="nombre" for="nombre"/>
+                        <h:inputText id="nombre" value="#{productoBeans.producto.nombre}"/>
+
+                        <h:outputLabel value="descripcion" for="descripcion"/>
+                        <h:inputText id="descripcion" value="#{productoBeans.producto.descripcion}"/>
+
+                        <h:outputLabel value="marca" for="marca"/>
+                        <h:inputText id="marca" value="#{productoBeans.producto.marca}"/>
+                        <h:outputLabel value="stock" for="stock"/>
+
+                        <h:inputText id="stock" value="#{productoBeans.producto.stock}"/>
+
+
+                        <h:outputLabel value="estado" for="estado"/>
+                        <h:inputText id="estado" value="#{productoBeans.producto.estado}"/>
+
+                        <h:outputLabel value="precio" for="precio"/>
+                        <h:inputText id="precio" value="#{productoBeans.producto.precio}"/>
+
+                        <h:outputLabel value="sucursal" for="sucursal"/>
+                        <h:selectOneMenu id="sucursal" value="#{productoBeans.producto.sucursal}">
+                            <f:selectItem itemLabel="--- Seleccione una Categoria ---" itemValue="#{null}"/>
+                            <f:selectItems value="#{listadoSucursales}" var="su" itemLabel="#{su.correo}"/>
+                            <f:converter binding="#{sucursalConverter}"/>
+                        </h:selectOneMenu>
+
+
+                        <h:commandButton value="Guardar" action="#{productoBeans.guardar}"/>
+                        <h:inputHidden value="#{productoBeans.producto.id}"/>
+                    </h:panelGrid>
+                </h:form>
+
+            </h:panelGrid>
+        </div> 
     </h:body>
 </html>
