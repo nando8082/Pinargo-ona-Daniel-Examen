@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.beans;
 
+import ec.edu.ups.entidades.Sucursal;
 import ec.edu.ups.entidades.Usuario;
 import ec.edu.ups.facade.ClienteFacade;
 import ec.edu.ups.facade.UsuarioFacade;
@@ -25,160 +26,71 @@ import java.util.List;
  *
  * @author Jonny,Daniel,Elvis,Edisson
  */
-@Named
-@SessionScoped
+@Model
 public class UsuarioBeans implements Serializable {
 
     @EJB
     private UsuarioFacade uFacade;
+    private Usuario usuario;
+    private long id;
 
-    private List<Usuario> list = new ArrayList<>();
-    private int id;
-    private String cedula;
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private String contrasenia;
-    private String tipoUs;
-    private String telefono;
-    private String direccion;
+    @Produces
+    @Model
+
+    public String titulo() {
+        return "CRUD USUARIO";
+    }
 
     @PostConstruct
     public void init() {
-        list = uFacade.findAll();
-        
+        this.usuario = new Usuario();
+    }
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-  
-
-   
-
-    public String add() {
-        uFacade.create(new Usuario(id, cedula, nombre, apellido, correo, contrasenia, tipoUs, telefono, direccion));
-        list = uFacade.findAll();
-        return null;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public String delete(Usuario u) {
-        uFacade.remove(u);
-        list = uFacade.findAll();
-        return null;
-    }
-
-    public String edit(Usuario u) {
-        u.setEditable(true);
-        return null;
-    }
-
-    public String save(Usuario u) {
-        uFacade.edit(u);
-        list = uFacade.findAll();
-        u.setEditable(false);
-        return null;
-    }
-
-    public Usuario[] getList() {
-        return list.toArray(new Usuario[0]);
-    }
-
-    public void setList(List<Usuario> list) {
-        this.list = list;
-    }
-
-    public UsuarioFacade getClienteFacade() {
-        return uFacade;
-    }
-
-    public void setUsuarioFacade(UsuarioFacade cFacade) {
-        this.uFacade = cFacade;
-    }
-
-    public UsuarioFacade getcFacade() {
-        return uFacade;
-    }
-
-    public void setcFacade(UsuarioFacade cFacade) {
-        this.uFacade = cFacade;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getCedula() {
-        return cedula;
+    @Produces
+    @RequestScoped
+    @Named("listadoUsuarios")
+    public List<Usuario> listadoUsuarios() {
+        List<Usuario> prod = uFacade.listar();
+        return prod;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public String guardar() {
+        try {
+            this.uFacade.guardar(usuario);
+            usuario = new Usuario();
+        } catch (Exception e) {
+        }
+        return "usuarioCRUD.xhtml?faces-redirect=true";
     }
 
-    public String getNombre() {
-        return nombre;
+    public String eliminar(Long id) {
+        uFacade.eliminar(id);
+        return "usuarioCRUD.xhtml?faces-redirect=true";
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public String editar(Long id) {
+        this.id = id;
 
-    public String getApellido() {
-        return apellido;
+        if (id != null && id > 0) {
+            uFacade.opcional(id).ifPresent(p -> {
+                this.usuario = p;
+            });
+        }
+        return "formUsuario.xhtml";
     }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getContrasenia() {
-        return contrasenia;
-    }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-
-    public UsuarioFacade getuFacade() {
-        return uFacade;
-    }
-
-    public void setuFacade(UsuarioFacade uFacade) {
-        this.uFacade = uFacade;
-    }
-
-    public String getTipoUs() {
-        return tipoUs;
-    }
-
-    public void setTipoUs(String tipoUs) {
-        this.tipoUs = tipoUs;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
 }

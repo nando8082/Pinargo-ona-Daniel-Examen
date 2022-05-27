@@ -32,7 +32,7 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String cedula;
     private String nombre;
     private String apellido;
@@ -43,42 +43,32 @@ public class Usuario implements Serializable {
     private String direccion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Set<FacturaCabecera> facturaCabecera = new HashSet<FacturaCabecera>();
-    @Transient
-    private boolean editable;
+  
      public Usuario() {
-        super();
-    }
-    public Usuario(int id, String cedula, String nombre, String apellido, String correo, String contrasenia, String tipoUs, String telefono, String direccion) {
-        super();
-        this.setId(id);
-        this.setCedula(cedula);
-        this.setNombre(nombre); 
-        this.setApellido(apellido);
-        this.setCorreo(correo); 
-        this.setContrasenia(contrasenia);
-        this.setTipoUs(tipoUs);
-        this.setTelefono(telefono); 
-        this.setDireccion(direccion);
-    } 
-
-   
-
-
-    public boolean isEditable() {
-        return editable;
-    }
-    
-    public void setEditable(boolean editable) {
-        this.editable = editable;
+       
     }
 
-    public int getId() {
+    public Usuario(long id, String cedula, String nombre, String apellido, String correo, String contrasenia, String tipoUs, String telefono, String direccion) {
+        this.id = id;
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.contrasenia = contrasenia;
+        this.tipoUs = tipoUs;
+        this.telefono = telefono;
+        this.direccion = direccion;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
+  
+   
 
     public String getCedula() {
         return cedula;

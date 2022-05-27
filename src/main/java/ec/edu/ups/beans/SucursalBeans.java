@@ -40,10 +40,7 @@ public class SucursalBeans implements Serializable {
     @Produces
     @Model
 
-    public String titulo() {
-        return "CRUD SUCURSAL";
-    }
-
+   
     @PostConstruct
     public void init() {
         this.sucursal = new Sucursal();

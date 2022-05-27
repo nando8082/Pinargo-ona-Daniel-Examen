@@ -5,12 +5,14 @@
 package ec.edu.ups.facade;
 
 import ec.edu.ups.entidades.Cliente;
+import ec.edu.ups.entidades.Sucursal;
 import ec.edu.ups.entidades.Usuario;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -49,5 +51,26 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         }
         return usuario;
     }
-
+    public List<Usuario> listar(){
+       return em.createQuery("SELECT u FROM Usuario u", Usuario.class).getResultList();
+              
+    }
+    public Optional<Usuario> opcional(Long id) {
+        return Optional.ofNullable(porId(id));
+    }
+    public Usuario porId(Long id) {
+        return em.find(Usuario.class, id);
+    }
+    
+    
+    public void guardar(Usuario usuario) {
+       
+            em.merge(usuario);
+        
+    }
+    
+    public void eliminar(Long id) {
+        Usuario usuario = porId(id);
+        em.remove(usuario);
+    }
 }
