@@ -2,47 +2,124 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta charset="UTF-8"/>
         <title>Formulario Producto</title>
+
+        <style type="text/css">
+            body{
+                background-image:url(recursos/fClientes.jpeg);
+                background-repeat: no-repeat;
+                background-position: 100% ;
+                height: 400px;
+                padding-right: 15%;
+                background-size: cover;
+            }
+
+            h3{
+                font-size: 35pt;
+                text-align: center;
+            }
+
+            .card{
+                margin-left: 38%;
+                text-align: center;
+            }
+            .volver{
+                font-size: 18pt;
+                text-align: center;
+                color: blue;
+                text-decoration: none;
+            }
+            .volver:hover{
+                background-color: #f7f7f7;
+            }
+
+            .card1{
+                text-align: center;
+            }
+
+        </style>
+
     </h:head>
     <h:body>
-
-        <h:panelGrid border="1">
-            <f:facet name="header">
-                <h:outputText value="Formulario Producto"/>
-            </f:facet>
-            <h:link outcome="productoCRUD.xhtml" value="volver"/>
+  
+        <!-- Menú -->
+        <div class="card1">
             <h:form>
-                <h:panelGrid columns="2">
+                <p:growl id="messages"/>
 
-                    <h:outputLabel value="telefono" for="telefono"/>
-                    <h:inputText id="telefono" value="#{sucursalBeans.sucursal.telefono}"/>
+                <p:menubar>
+                    <p:submenu label="Archivo" icon="pi pi-fw pi-file">
+                        <p:submenu label="New" icon="pi pi-fw pi-plus">                            
+                            <p:menuitem value="Bookmark" icon="pi pi-fw pi-bookmark" />
+                            <p:menuitem value="Video" icon="pi pi-fw pi-video"/>
+                        </p:submenu>
+                        <p:menuitem value="Delete" icon="pi pi-fw pi-trash"/>
+                        <p:divider />
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                    </p:submenu>
 
-                    <h:outputLabel value="direccion" for="direccion"/>
-                    <h:inputText id="direccion" value="#{sucursalBeans.sucursal.direccion}"/>
+                    <p:submenu label="Servicios" icon="pi pi-fw pi-pencil">
+                        <p:menuitem value="Cliente" icon="pi pi-fw pi-user" url="formCliente.xhtml"/>
+                        <p:menuitem value="Productos" icon="pi pi-fw pi-shopping-cart" url="formProducto.xhtml"/>
+                        <p:menuitem value="Sucursales" icon="pi pi-fw pi-map" url="formSucursal.xhtml"/>
+                        <p:menuitem value="Usuarios" icon="pi pi-fw pi-user" url="formUsuario.xhtml"/>
+                    </p:submenu>
 
-                    <h:outputLabel value="ciudad" for="ciudad"/>
-                    <h:inputText id="ciudad" value="#{sucursalBeans.sucursal.ciudad}"/>
-                    <h:outputLabel value="correo" for="correo"/>
+                    <p:submenu label="Usuario" icon="pi pi-fw pi-user">
+                        <p:menuitem value="Agregar" icon="pi pi-fw pi-user-plus"/>
+                    </p:submenu>
 
-                    <h:inputText id="correo" value="#{sucursalBeans.sucursal.correo}"/>
+                    <p:divider layout="vertical"/>
 
-
-                    <h:outputLabel value="Enitdad" for="Enitdad"/>
-                    <h:selectOneMenu id="sucursal" value="#{sucursalBeans.sucursal.entidadPrincipal}">
-                        <f:selectItem itemLabel="--- Seleccione una Categoria ---" itemValue="#{null}"/>
-                        <f:selectItems value="#{listadoEntidadPrincipal}" var="su" itemLabel="#{su.nombre}"/>
-                        <f:converter binding="#{EntidadpConverter}"/>
-                    </h:selectOneMenu>
-
-
-                    <h:commandButton value="Guardar" action="#{sucursalBeans.guardar}"/>
-                    <h:inputHidden value="#{sucursalBeans.sucursal.id}"/>
-                </h:panelGrid>
+                    <f:facet name="options">
+                        <p:linkButton outcome="Inicio.xhtml" value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+                    </f:facet>
+                </p:menubar>
             </h:form>
+        </div>
 
-        </h:panelGrid>
+        <br></br><br></br>
+
+        <h3>Formulario Sucursales</h3>
+
+        <div class="card">
+            <h:panelGrid border="1" cellpadding="7" styleClass="p-mb-3">
+                <h:link class="volver" outcome="productoCRUD.xhtml" value="volver"/>
+                <h:form>
+                    <h:panelGrid columns="2">
+
+                        <p:outputLabel value="Teléfono" for="telefono"/>
+                        <p:inputText id="telefono" value="#{sucursalBeans.sucursal.telefono}"/>
+
+                        <p:outputLabel value="Dirección" for="direccion"/>
+                        <p:inputText id="direccion" value="#{sucursalBeans.sucursal.direccion}"/>
+
+                        <p:outputLabel value="Ciudad" for="ciudad"/>
+                        <p:inputText id="ciudad" value="#{sucursalBeans.sucursal.ciudad}"/>
+
+                        <p:outputLabel value="Correo" for="correo"/>
+                        <p:inputText id="correo" value="#{sucursalBeans.sucursal.correo}"/>
+
+
+                        <h:outputLabel value="Enitidad" for="Enitdad"/>
+
+                        <h:selectOneMenu id="sucursal" value="#{sucursalBeans.sucursal.entidadPrincipal}">
+                            <f:selectItem itemLabel="--- Seleccione una Categoria ---" itemValue="#{null}"/>
+                            <f:selectItems value="#{listadoEntidadPrincipal}" var="su" itemLabel="#{su.nombre}"/>
+                            <f:converter binding="#{EntidadpConverter}"/>
+                        </h:selectOneMenu>
+
+
+                        <p:commandButton value="Guardar" action="#{sucursalBeans.guardar}" styleClass="ui-button-raised ui-button-secondary"/>
+                        <h:inputHidden value="#{sucursalBeans.sucursal.id}"/>
+                    </h:panelGrid>
+                </h:form>
+
+            </h:panelGrid>
+        </div>
     </h:body>
 </html>
