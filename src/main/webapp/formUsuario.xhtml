@@ -7,7 +7,7 @@
       >
     <h:head>
         <meta charset="UTF-8"/>
-        <title>Formulario Producto</title>
+        <title>Formulario Usuario</title>
 
         <style type="text/css">
             body{
@@ -15,7 +15,6 @@
                 background-repeat: no-repeat;
                 background-position: 100% ;
                 height: 400px;
-                padding-right: 15%;
                 background-size: cover;
             }
 
@@ -48,8 +47,6 @@
     <h:body>
 
         <!-- Menú -->
-
-        <!-- Menú -->
         <div class="card1">
             <h:form>
                 <p:growl id="messages"/>
@@ -62,8 +59,8 @@
                         <p:menuitem value="Usuarios" icon="pi pi-fw pi-user" url="formUsuario.xhtml"/>
                     </p:submenu>
 
-                    <p:submenu label="Cliente" icon="pi pi-fw pi-user">
-                        <p:menuitem value="Agregar" icon="pi pi-fw pi-user-plus" url="formCliente.xhtml"/>
+                    <p:submenu label="Usuario" icon="pi pi-fw pi-user">
+                        <p:menuitem value="Listar" icon="pi pi-fw pi-user-plus" url="usuarioCRUD.xhtml"/>
                     </p:submenu>
 
                     <p:divider layout="vertical"/>
@@ -80,10 +77,10 @@
         <h3>Formulario Usuario</h3>
 
         <div class="card">
-            <h:panelGrid border="1">
+            <h:panelGrid border="1" >
                 <h:link class="volver" outcome="usuarioCRUD.xhtml" value="volver"/>
                 <h:form>
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="2" cellpadding="7" styleClass="p-mb-3">
 
 
                         <p:outputLabel value="Cédula" for="cedula"/>
@@ -101,11 +98,12 @@
                         <p:outputLabel value="Contraseña" for="contrasenia"/>
                         <p:inputText id="contrasenia" value="#{usuarioBeans.usuario.contrasenia}"/>
 
-                        <h:outputLabel value="TipoUs" for="tipoUs"/>
-                        <h:selectOneRadio   value="#{usuarioBeans.usuario.tipoUs}">
+                        <p:outputLabel value="TipoUs" />
+
+                        <p:selectOneRadio   value="#{usuarioBeans.usuario.tipoUs}" unselectable="true">
                             <f:selectItem  itemValue="Admin" itemLabel="Administrador" />
                             <f:selectItem itemValue="Empleado" itemLabel="Empleado" />
-                        </h:selectOneRadio>  
+                        </p:selectOneRadio>  
 
 
                         <p:outputLabel value="Teléfono" for="telefono"/>
