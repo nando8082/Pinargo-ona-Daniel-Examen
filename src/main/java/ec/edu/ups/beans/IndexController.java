@@ -42,7 +42,7 @@ public class IndexController implements Serializable {
     }
 
     public String iniciarSesion() {
-        System.out.println("VERIFICANDO INICIARSESION");
+        System.out.println("VERIFICANDO INICIAR SESION");
         String redireccion = null;
         Usuario u;
         FacesContext context = FacesContext.getCurrentInstance();
@@ -51,10 +51,10 @@ public class IndexController implements Serializable {
             u = this.uFacade.iniciarSesion(usuario);
             if (u != null) {
                 context.getExternalContext().getSessionMap().put("usuario", u);
-                redireccion = "productoCRUD";
+                redireccion = "usuarioCRUD";
             } else {
                 FacesMessage message;
-                message = new FacesMessage("Usuarioy/ocontraseña incorrectos.");
+                message = new FacesMessage("Usuarioy/o contraseña incorrectos.");
                 context.addMessage(null, message);
                 redireccion = "index";
             }
