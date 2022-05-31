@@ -30,7 +30,7 @@ public class ProductoFacade extends AbstractFacade<Producto> {
     }
     
     public List<Producto> listar() {
-        return em.createQuery("select p from Producto p left outer join fetch p.bodega", Producto.class).getResultList();
+        return em.createQuery("select p from Producto p left outer join fetch p.Bodega", Producto.class).getResultList();
     }
     
     public void guardar(Producto producto) {
@@ -41,7 +41,7 @@ public class ProductoFacade extends AbstractFacade<Producto> {
     
     public Producto porId(Long id) {
         //return em.find(Producto.class, id);
-        return em.createQuery("select p from Producto p left outer join fetch p.bodega where p.id=:id", Producto.class)
+        return em.createQuery("select p from Producto p left outer join fetch p.Bodega where p.id=:id", Producto.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }

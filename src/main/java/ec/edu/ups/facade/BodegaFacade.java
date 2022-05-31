@@ -34,7 +34,7 @@ public class BodegaFacade extends AbstractFacade<Bodega> {
     }
    
     public List<Bodega> listar(){
-       return em.createQuery("SELECT u FROM bodega u", Bodega.class).getResultList();
+       return em.createQuery("SELECT u FROM Bodega u", Bodega.class).getResultList();
               
     }
     public Optional<Bodega> opcional(Long id) {

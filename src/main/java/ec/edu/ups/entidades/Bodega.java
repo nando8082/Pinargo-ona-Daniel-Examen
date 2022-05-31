@@ -24,7 +24,7 @@ import java.util.Set;
  * @author Daniel
  */
 @Entity
-@NamedQuery(name = "getBodega", query = "SELECT s FROM  bodega s")
+@NamedQuery(name = "getBodega", query = "SELECT s FROM  Bodega s")
 public class Bodega implements Serializable {
 
     private static final long serialVersionUID = 1L;

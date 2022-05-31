@@ -7,129 +7,78 @@
         <title>Productos</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>   
-        <link href="recursos/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="recursos/css/propio.css" rel="stylesheet"/>
-        <f:event type="preRenderView" listener="#{controlarSesion.verificarSesion()}"/>
-
-
     </h:head>
 
     <h:body>
 
-        <!-- Menú -->
-        <div class="card1">
-            <h:form>
-                <p:growl id="messages"/>
+        <h3 class="h3Sucursal">Producto</h3>
 
-                <p:menubar>
-                    <p:submenu label="Archivo" icon="pi pi-fw pi-file">
-                        <p:submenu label="New" icon="pi pi-fw pi-plus">
-                            <p:menuitem value="Bookmark" icon="pi pi-fw pi-bookmark"/>
-                            <p:menuitem value="Video" icon="pi pi-fw pi-video"/>
-                        </p:submenu>
-                        <p:menuitem value="Delete" icon="pi pi-fw pi-trash"/>
-                        <p:divider />
-                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
-                    </p:submenu>
+        <div class="row justify-content-center">
+            <div class="col col-md-4 ">
+                <h:form>
+                    <h:outputText value="No existen producto en la base de datos!" rendered="#{empty listadoProductos}"/>
+                    <h:dataTable value="#{listadoProductos}" var="prod" rendered="#{not empty listadoProductos}"
+                                 headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
 
-                    <p:submenu label="Servicios" icon="pi pi-fw pi-pencil">
-                        <a href="clienteCRUD"><p:menuitem value="Cliente" icon="pi pi-fw pi-align-left"/></a>
-                        <p:menuitem value="Productos" icon="pi pi-fw pi-align-right"/>
-                        <p:menuitem value="Sucursales" icon="pi pi-fw pi-align-center"/>
-                        <p:menuitem value="Usuarios" icon="pi pi-fw pi-align-justify"/>
-                    </p:submenu>
-
-                    <p:submenu label="Usuario" icon="pi pi-fw pi-user">
-                        <p:menuitem value="Agregar" icon="pi pi-fw pi-user-plus"/>
-                    </p:submenu>
-
-                    <p:divider layout="vertical"/>
-
-                    <p:menuitem value="Salir" icon="pi pi-fw pi-power-off"/>
-
-                    <f:facet name="options">
-                        <p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
-                    </f:facet>
-                </p:menubar>
-            </h:form>
-        </div>
-        
-            
-        <section>
-            <div class="row justify-content-center">
-                <div class="col col-md-3 mt-md-4 mb-md-4">
-                    <h3 class="h3Sucursal">Producto</h3>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col col-md-4 ">
-                    <h:form>
-                        <h:outputText value="No existen producto en la base de datos!" rendered="#{empty listadoProductos}"/>
-                        <h:dataTable value="#{listadoProductos}" var="prod" rendered="#{not empty listadoProductos}"
-                                     headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-
-                            <h:column>
-                                <f:facet name="header">Id</f:facet>
-                                    #{prod.id}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header"> Nombre </f:facet>
-                                <h:outputText value="#{prod.nombre}"  />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Descripcion</f:facet>
-                                <h:outputText value="#{prod.descripcion}"  />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header"> Marca </f:facet>
-                                <h:outputText value="#{prod.marca}"  />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header"> Stock </f:facet>
-                                <h:outputText value="#{prod.stock}"  />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header"> Estado </f:facet>
-                                <h:outputText value="#{prod.estado}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header"> Precio </f:facet>
-                                <h:outputText value="#{prod.precio}"  />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header"> Id_Sucursal </f:facet>
-                                <h:outputText value="#{prod.sucursal.correo}" />
-                            </h:column>
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                                #{prod.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"> Nombre </f:facet>
+                            <h:outputText value="#{prod.nombre}"  />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Descripcion</f:facet>
+                            <h:outputText value="#{prod.descripcion}"  />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"> Marca </f:facet>
+                            <h:outputText value="#{prod.marca}"  />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"> Stock </f:facet>
+                            <h:outputText value="#{prod.stock}"  />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"> Estado </f:facet>
+                            <h:outputText value="#{prod.estado}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"> Precio </f:facet>
+                            <h:outputText value="#{prod.precio}"  />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"> Id_Sucursal </f:facet>
+                            <h:outputText value="#{prod.sucursal.correo}" />
+                        </h:column>
 
 
-                            <h:column>
-                                <f:facet name="header"> Editar </f:facet>
-                                <h:commandLink value="Editar" action="#{productoBeans.editar(prod.id)}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header"> Action </f:facet>
+                        <h:column>
+                            <f:facet name="header"> Editar </f:facet>
+                            <h:commandLink value="Editar" action="#{productoBeans.editar(prod.id)}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"> Action </f:facet>
 
-                                <h:commandLink value="Eliminar" action="#{productoBeans.eliminar(prod.id)}" />
-                            </h:column>
-                        </h:dataTable>
+                            <h:commandLink value="Eliminar" action="#{productoBeans.eliminar(prod.id)}" />
+                        </h:column>
+                    </h:dataTable>
 
 
 
-                        <div class="row justify-content-center mt-md-5">
-                            <div class="col col-md-3">
-                                <h:commandButton class="btn btn-outline-info" value="Añadir" action="formProducto.xhtml" />
-                            </div>
+                    <div class="row justify-content-center mt-md-5">
+                        <div class="col col-md-3">
+                            <h:commandButton class="btn btn-outline-info" value="Añadir" action="formProducto.xhtml" />
                         </div>
-                    </h:form>                    
-                </div>
+                    </div>
+                </h:form>                    
             </div>
+        </div>
 
 
 
         </section>
 
-
-        <script src="js/bootstrap.min.js" />
     </h:body>
 </html>
