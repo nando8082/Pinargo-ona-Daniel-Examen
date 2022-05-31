@@ -45,23 +45,13 @@
 
     </h:head>
     <h:body>
-  
+
         <!-- Menú -->
         <div class="card1">
             <h:form>
                 <p:growl id="messages"/>
 
                 <p:menubar>
-                    <p:submenu label="Archivo" icon="pi pi-fw pi-file">
-                        <p:submenu label="New" icon="pi pi-fw pi-plus">                            
-                            <p:menuitem value="Bookmark" icon="pi pi-fw pi-bookmark" />
-                            <p:menuitem value="Video" icon="pi pi-fw pi-video"/>
-                        </p:submenu>
-                        <p:menuitem value="Delete" icon="pi pi-fw pi-trash"/>
-                        <p:divider />
-                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
-                    </p:submenu>
-
                     <p:submenu label="Servicios" icon="pi pi-fw pi-pencil">
                         <p:menuitem value="Cliente" icon="pi pi-fw pi-user" url="formCliente.xhtml"/>
                         <p:menuitem value="Productos" icon="pi pi-fw pi-shopping-cart" url="formProducto.xhtml"/>
@@ -69,8 +59,8 @@
                         <p:menuitem value="Usuarios" icon="pi pi-fw pi-user" url="formUsuario.xhtml"/>
                     </p:submenu>
 
-                    <p:submenu label="Usuario" icon="pi pi-fw pi-user">
-                        <p:menuitem value="Agregar" icon="pi pi-fw pi-user-plus"/>
+                    <p:submenu label="Cliente" icon="pi pi-fw pi-user">
+                        <p:menuitem value="Agregar" icon="pi pi-fw pi-user-plus" url="formCliente.xhtml"/>
                     </p:submenu>
 
                     <p:divider layout="vertical"/>
@@ -105,14 +95,13 @@
                         <p:inputText id="correo" value="#{sucursalBeans.sucursal.correo}"/>
 
 
-                        <h:outputLabel value="Enitidad" for="Enitdad"/>
+                        <h:outputLabel value="Entidad" for="Enitdad"/>
 
                         <h:selectOneMenu id="sucursal" value="#{sucursalBeans.sucursal.entidadPrincipal}">
                             <f:selectItem itemLabel="--- Seleccione una Categoria ---" itemValue="#{null}"/>
                             <f:selectItems value="#{listadoEntidadPrincipal}" var="su" itemLabel="#{su.nombre}"/>
                             <f:converter binding="#{EntidadpConverter}"/>
                         </h:selectOneMenu>
-
 
                         <p:commandButton value="Guardar" action="#{sucursalBeans.guardar}" styleClass="ui-button-raised ui-button-secondary"/>
                         <h:inputHidden value="#{sucursalBeans.sucursal.id}"/>
