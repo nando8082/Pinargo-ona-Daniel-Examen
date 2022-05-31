@@ -13,7 +13,7 @@ import jakarta.inject.Named;
 import java.util.Optional;
 
 @RequestScoped
-@Named("sucursalConverter")
+@Named("bodegaConverter")
 public class BodegaConverter implements Converter<Bodega> {
 
     @Inject

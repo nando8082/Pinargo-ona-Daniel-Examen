@@ -34,7 +34,7 @@ public class BodegaFacade extends AbstractFacade<Bodega> {
     }
    
     public List<Bodega> listar(){
-       return em.createQuery("SELECT u FROM Sucursal u", Bodega.class).getResultList();
+       return em.createQuery("SELECT u FROM bodega u", Bodega.class).getResultList();
               
     }
     public Optional<Bodega> opcional(Long id) {
@@ -45,15 +45,15 @@ public class BodegaFacade extends AbstractFacade<Bodega> {
     }
     
     
-    public void guardar(Bodega sucursal) {
+    public void guardar(Bodega bodega) {
        
-            em.merge(sucursal);
+            em.merge(bodega);
         
     }
     
     public void eliminar(Long id) {
-        Bodega sucursal = porId(id);
-        em.remove(sucursal);
+        Bodega bodega = porId(id);
+        em.remove(bodega);
     }
     
     

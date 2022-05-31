@@ -34,7 +34,7 @@ public class EntidadPrincipal implements Serializable {
     private String telefono;
     private String direccion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "entidadPrincipal")
-    private Set<Bodega> sucursal = new HashSet<Bodega>();
+    private Set<Bodega> bodega = new HashSet<Bodega>();
    
 
     public EntidadPrincipal() {
@@ -56,13 +56,6 @@ public class EntidadPrincipal implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
-    
-    
-    
-   
-    
-
-   
 
     public String getNombre() {
         return nombre;
@@ -96,12 +89,12 @@ public class EntidadPrincipal implements Serializable {
         this.direccion = direccion;
     }
 
-    public Set<Bodega> getSucursal() {
-        return sucursal;
+    public Set<Bodega> getbodega() {
+        return bodega;
     }
 
-    public void setSucursal(Set<Bodega> sucursal) {
-        this.sucursal = sucursal;
+    public void setSucursal(Set<Bodega> bodega) {
+        this.bodega = bodega;
     }
 
     

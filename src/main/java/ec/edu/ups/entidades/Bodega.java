@@ -24,7 +24,7 @@ import java.util.Set;
  * @author Daniel
  */
 @Entity
-@NamedQuery(name = "getSucursal", query = "SELECT s FROM  Sucursal s")
+@NamedQuery(name = "getBodega", query = "SELECT s FROM  bodega s")
 public class Bodega implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class Bodega implements Serializable {
     @JoinColumn(nullable = true)
     private EntidadPrincipal entidadPrincipal;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursal")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bodega")
     private Set<Producto> productos = new HashSet<Producto>();
 
     public Bodega() {

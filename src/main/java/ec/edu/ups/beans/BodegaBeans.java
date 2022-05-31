@@ -25,7 +25,7 @@ public class BodegaBeans implements Serializable {
     @EJB
     private BodegaFacade sFacade;
     private long id;
-    private Bodega sucursal;
+    private Bodega bodega;
 
     @Produces
     @Model
@@ -33,7 +33,7 @@ public class BodegaBeans implements Serializable {
    
     @PostConstruct
     public void init() {
-        this.sucursal = new Bodega();
+        this.bodega = new Bodega();
     }
 
     public long getId() {
@@ -44,34 +44,34 @@ public class BodegaBeans implements Serializable {
         this.id = id;
     }
 
-    public Bodega getSucursal() {
-        return sucursal;
+    public Bodega getBodega() {
+        return bodega;
     }
 
-    public void setSucursal(Bodega sucursal) {
-        this.sucursal = sucursal;
+    public void setSucursal(Bodega bodega) {
+        this.bodega = bodega;
     }
 
     @Produces
     @RequestScoped
-    @Named("listadoSucursales")
-    public List<Bodega> listadoSucursales() {
+    @Named("listadoBodegas")
+    public List<Bodega> listadoBodegas() {
         List<Bodega> prod = sFacade.listar();
         return prod;
     }
 
     public String guardar() {
         try {
-            this.sFacade.guardar(sucursal);
-            sucursal = new Bodega();
+            this.sFacade.guardar(bodega);
+            bodega = new Bodega();
         } catch (Exception e) {
         }
-        return "sucursalCRUD.xhtml?faces-redirect=true";
+        return "bodegaCRUD.xhtml?faces-redirect=true";
     }
 
     public String eliminar(Long id) {
         sFacade.eliminar(id);
-        return "sucursalCRUD.xhtml?faces-redirect=true";
+        return "bodegaCRUD.xhtml?faces-redirect=true";
     }
 
     public String editar(Long id) {
@@ -79,9 +79,9 @@ public class BodegaBeans implements Serializable {
 
         if (id != null && id > 0) {
             sFacade.opcional(id).ifPresent(p -> {
-                this.sucursal = p;
+                this.bodega = p;
             });
         }
-        return "formSucursal.xhtml";
+        return "formBodega.xhtml";
     }
 }

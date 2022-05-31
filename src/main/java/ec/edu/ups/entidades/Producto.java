@@ -36,7 +36,7 @@ public class Producto implements Serializable {
     
     @ManyToOne
     @JoinColumn(nullable = true)
-    private Bodega sucursal;
+    private Bodega bodega;
     
    
 
@@ -44,7 +44,7 @@ public class Producto implements Serializable {
       
     }
 
-    public Producto(long id, String nombre, String descripcion, String marca, int stock, String estado, Double precio, Bodega sucursal) {
+    public Producto(long id, String nombre, String descripcion, String marca, int stock, String estado, Double precio, Bodega bodega) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -52,7 +52,7 @@ public class Producto implements Serializable {
         this.stock = stock;
         this.estado = estado;
         this.precio = precio;
-        this.sucursal = sucursal;
+        this.bodega = bodega;
     }
 
     
@@ -116,12 +116,12 @@ public class Producto implements Serializable {
     }
 
 
-    public Bodega getSucursal() {
-        return sucursal;
+    public Bodega getBodega() {
+        return bodega;
     }
 
-    public void setSucursal(Bodega sucursal) {
-        this.sucursal = sucursal;
+    public void setBodega(Bodega sucursal) {
+        this.bodega = bodega;
     }
 
   

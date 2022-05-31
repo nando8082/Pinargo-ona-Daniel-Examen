@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta charset="UTF-8"/>
-        <title>Formulario Sucursal</title>
+        <title>Formulario Bodega</title>
 
         <style type="text/css">
             body{
@@ -82,28 +82,28 @@
                     <h:panelGrid columns="2" cellpadding="7" styleClass="p-mb-3">
 
                         <p:outputLabel value="Teléfono" for="telefono"/>
-                        <p:inputText id="telefono" value="#{sucursalBeans.sucursal.telefono}"/>
+                        <p:inputText id="telefono" value="#{BodegaBeans.bodega.telefono}"/>
 
                         <p:outputLabel value="Dirección" for="direccion"/>
-                        <p:inputText id="direccion" value="#{sucursalBeans.sucursal.direccion}"/>
+                        <p:inputText id="direccion" value="#{BodegaBeans.bodega.direccion}"/>
 
                         <p:outputLabel value="Ciudad" for="ciudad"/>
-                        <p:inputText id="ciudad" value="#{sucursalBeans.sucursal.ciudad}"/>
+                        <p:inputText id="ciudad" value="#{BodegaBeans.bodega.ciudad}"/>
 
                         <p:outputLabel value="Correo" for="correo"/>
-                        <p:inputText id="correo" value="#{sucursalBeans.sucursal.correo}"/>
+                        <p:inputText id="correo" value="#{BodegaBeans.bodega.correo}"/>
 
 
                         <p:outputLabel value="Entidad"/>
 
-                        <p:selectOneMenu id="sucursal" value="#{sucursalBeans.sucursal.entidadPrincipal}">
+                        <p:selectOneMenu id="bodega" value="#{BodegaBeans.bodega.entidadPrincipal}">
                             <f:selectItem itemLabel="--- Seleccione una Categoria ---" itemValue="#{null}"/>
                             <f:selectItems value="#{listadoEntidadPrincipal}" var="su" itemLabel="#{su.nombre}"/>
                             <f:converter binding="#{EntidadpConverter}"/>
                         </p:selectOneMenu>
 
-                        <p:commandButton value="Guardar" action="#{sucursalBeans.guardar}" styleClass="ui-button-raised ui-button-secondary"/>
-                        <h:inputHidden value="#{sucursalBeans.sucursal.id}"/>
+                        <p:commandButton value="Guardar" action="#{BodegaBeans.guardar}" styleClass="ui-button-raised ui-button-secondary"/>
+                        <h:inputHidden value="#{BodegaBeans.bodega.id}"/>
                     </h:panelGrid>
                 </h:form>
 
