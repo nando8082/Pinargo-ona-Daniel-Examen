@@ -33,13 +33,12 @@
     <h:body >
         <h:form class="fInicio">
             <p:growl id="messages" showDetail="true" />
-            <h:panelGrid class="gridInicio" columns="2">
+            <h:panelGrid class="gridInicio" columns="2" cellpadding="7" styleClass="p-mb-3">
                 <p:outputLabel class="oLabel" for="txtUsuario" value="Usuario"/>
                 <p:inputText id="txtUsuario" required="true" value="#{indexController.usuario.correo}" />
                 <p:outputLabel class="oLabel" for="txtClave" value="Clave"/>
                 <p:inputText type="password" id="txtClave" required="true" value="#{indexController.usuario.contrasenia}"/>
-                <h:column/>
-                <br></br><br></br>
+                <p:column/>
                 <p:commandButton icon="pi pi-key" value="INICIAR SESION" action="#{indexController.iniciarSesion()}" />
             </h:panelGrid>
         </h:form>
