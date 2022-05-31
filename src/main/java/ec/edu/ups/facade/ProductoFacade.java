@@ -13,11 +13,11 @@ import java.util.Optional;
 
 /**
  *
- * @author Gabus
+ * @author Daniel
  */
 @Stateless 
 public class ProductoFacade extends AbstractFacade<Producto> {
-    @PersistenceContext(name="TestJpa")
+    @PersistenceContext(name="examenInterciclo")
     private EntityManager em;
     
     @Override

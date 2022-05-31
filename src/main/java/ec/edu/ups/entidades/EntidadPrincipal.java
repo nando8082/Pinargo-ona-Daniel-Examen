@@ -19,7 +19,7 @@ import java.util.Set;
 
 /**
  *
- * @author Jonny,Daniel,Elvis,Edisson
+ * @author Daniel
  */
 @Entity
 
@@ -34,7 +34,7 @@ public class EntidadPrincipal implements Serializable {
     private String telefono;
     private String direccion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "entidadPrincipal")
-    private Set<Sucursal> sucursal = new HashSet<Sucursal>();
+    private Set<Bodega> sucursal = new HashSet<Bodega>();
    
 
     public EntidadPrincipal() {
@@ -96,11 +96,11 @@ public class EntidadPrincipal implements Serializable {
         this.direccion = direccion;
     }
 
-    public Set<Sucursal> getSucursal() {
+    public Set<Bodega> getSucursal() {
         return sucursal;
     }
 
-    public void setSucursal(Set<Sucursal> sucursal) {
+    public void setSucursal(Set<Bodega> sucursal) {
         this.sucursal = sucursal;
     }
 

@@ -16,7 +16,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Jonny
+ * @author Daniel
  */
 @Entity
 @NamedQuery(name = "getProducto", query = "SELECT p FROM  Producto p")
@@ -36,7 +36,7 @@ public class Producto implements Serializable {
     
     @ManyToOne
     @JoinColumn(nullable = true)
-    private Sucursal sucursal;
+    private Bodega sucursal;
     
    
 
@@ -44,7 +44,7 @@ public class Producto implements Serializable {
       
     }
 
-    public Producto(long id, String nombre, String descripcion, String marca, int stock, String estado, Double precio, Sucursal sucursal) {
+    public Producto(long id, String nombre, String descripcion, String marca, int stock, String estado, Double precio, Bodega sucursal) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -116,11 +116,11 @@ public class Producto implements Serializable {
     }
 
 
-    public Sucursal getSucursal() {
+    public Bodega getSucursal() {
         return sucursal;
     }
 
-    public void setSucursal(Sucursal sucursal) {
+    public void setSucursal(Bodega sucursal) {
         this.sucursal = sucursal;
     }
 

@@ -5,7 +5,7 @@
 package ec.edu.ups.beans;
 
 import ec.edu.ups.entidades.Producto;
-import ec.edu.ups.entidades.Sucursal;
+import ec.edu.ups.entidades.Bodega;
 import ec.edu.ups.facade.ProductoFacade;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  *
- * @author Elvis
+ * @author Daniel
  */
 @Model
 public class ProductoBeans implements Serializable {
