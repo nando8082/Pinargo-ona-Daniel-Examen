@@ -26,6 +26,20 @@
 
             .card{
                 margin-left: 38%;
+                text-align: center;
+            }
+            .volver{
+                font-size: 18pt;
+                text-align: center;
+                color: blue;
+                text-decoration: none;
+            }
+            .volver:hover{
+                background-color: #f7f7f7;
+            }
+
+            .card1{
+                text-align: center;
             }
 
         </style>
@@ -34,6 +48,7 @@
     <h:body>
 
         <!-- Menú -->
+
         <div class="card1">
             <h:form>
                 <p:growl id="messages"/>
@@ -50,10 +65,10 @@
                     </p:submenu>
 
                     <p:submenu label="Servicios" icon="pi pi-fw pi-pencil">
-                        <p:menuitem value="Cliente" icon="pi pi-fw pi-align-left"/>
-                        <p:menuitem value="Productos" icon="pi pi-fw pi-align-right"/>
-                        <p:menuitem value="Sucursales" icon="pi pi-fw pi-align-center"/>
-                        <p:menuitem value="Usuarios" icon="pi pi-fw pi-align-justify"/>
+                        <p:menuitem value="Cliente" icon="pi pi-fw pi-user" url="formCliente.xhtml"/>
+                        <p:menuitem value="Productos" icon="pi pi-fw pi-shopping-cart" url="formProducto.xhtml"/>
+                        <p:menuitem value="Sucursales" icon="pi pi-fw pi-map" url="formSucursal.xhtml"/>
+                        <p:menuitem value="Usuarios" icon="pi pi-fw pi-user" url="formUsuario.xhtml"/>
                     </p:submenu>
 
                     <p:submenu label="Usuario" icon="pi pi-fw pi-user">
@@ -62,10 +77,8 @@
 
                     <p:divider layout="vertical"/>
 
-                    <p:menuitem value="Salir" icon="pi pi-fw pi-power-off"/>
-
                     <f:facet name="options">
-                        <p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+                        <p:linkButton outcome="Inicio.xhtml" value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
                     </f:facet>
                 </p:menubar>
             </h:form>
@@ -77,44 +90,42 @@
 
         <div class="card">
             <h:panelGrid border="1">
-                <h:link outcome="usuarioCRUD.xhtml" value="volver"/>
+                <h:link class="volver" outcome="usuarioCRUD.xhtml" value="volver"/>
                 <h:form>
                     <h:panelGrid columns="2">
 
 
-                        <h:outputLabel value="cedula" for="cedula"/>
-                        <h:inputText id="cedula" value="#{usuarioBeans.usuario.cedula}"/>
+                        <p:outputLabel value="Cédula" for="cedula"/>
+                        <p:inputText id="cedula" value="#{usuarioBeans.usuario.cedula}"/>
 
-                        <h:outputLabel value="nombre" for="nombre"/>
-                        <h:inputText id="nombre" value="#{usuarioBeans.usuario.nombre}"/>
+                        <p:outputLabel value="Nombre" for="nombre"/>
+                        <p:inputText id="nombre" value="#{usuarioBeans.usuario.nombre}"/>
 
-                        <h:outputLabel value="apellido" for="apellido"/>
-                        <h:inputText id="apellido" value="#{usuarioBeans.usuario.apellido}"/>
-                        
-                        <h:outputLabel value="correo" for="correo"/>
+                        <p:outputLabel value="Apellido" for="apellido"/>
+                        <p:inputText id="apellido" value="#{usuarioBeans.usuario.apellido}"/>
 
-                        <h:inputText id="correo" value="#{usuarioBeans.usuario.correo}"/>
+                        <p:outputLabel value="Correo" for="correo"/>
+                        <p:inputText id="correo" value="#{usuarioBeans.usuario.correo}"/>
 
+                        <p:outputLabel value="Contraseña" for="contrasenia"/>
+                        <p:inputText id="contrasenia" value="#{usuarioBeans.usuario.contrasenia}"/>
 
-                        <h:outputLabel value="contrasenia" for="contrasenia"/>
-                        <h:inputText id="contrasenia" value="#{usuarioBeans.usuario.contrasenia}"/>
-                        
-                        <h:outputLabel value="tipoUs" for="tipoUs"/>
+                        <h:outputLabel value="TipoUs" for="tipoUs"/>
                         <h:selectOneRadio   value="#{usuarioBeans.usuario.tipoUs}">
-                            <f:selectItem  itemValue="Admin" itemLabel="Administrdor" />
+                            <f:selectItem  itemValue="Admin" itemLabel="Administrador" />
                             <f:selectItem itemValue="Empleado" itemLabel="Empleado" />
                         </h:selectOneRadio>  
 
 
-                        <h:outputLabel value="telefono" for="telefono"/>
-                        <h:inputText id="telefono" value="#{usuarioBeans.usuario.telefono}"/>
+                        <p:outputLabel value="Teléfono" for="telefono"/>
+                        <p:inputText id="telefono" value="#{usuarioBeans.usuario.telefono}"/>
 
-                        <h:outputLabel value="direccion" for="direccion"/>
-                        <h:inputText id="direccion" value="#{usuarioBeans.usuario.direccion}"/>
+                        <p:outputLabel value="Dirección" for="direccion"/>
+                        <p:inputText id="direccion" value="#{usuarioBeans.usuario.direccion}"/>
 
 
 
-                        <h:commandButton value="Guardar" action="#{usuarioBeans.guardar}"/>
+                        <p:commandButton value="Guardar" action="#{usuarioBeans.guardar}" styleClass="ui-button-raised ui-button-secondary"/>
                         <h:inputHidden value="#{usuarioBeans.usuario.id}"/>
                     </h:panelGrid>
                 </h:form>
